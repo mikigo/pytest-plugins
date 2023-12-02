@@ -1,0 +1,7 @@
+-i https://pypi.tuna.tsinghua.edu.cn/simple
+packaging
+platformdirs
+tabulate
+wcwidth
+requests_cache
+tqdm

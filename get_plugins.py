@@ -1,12 +1,8 @@
 from __future__ import annotations
 
-import datetime
 import pathlib
-import re
-from textwrap import dedent
 from textwrap import indent
 
-import packaging.version
 import platformdirs
 import tabulate
 import wcwidth
@@ -30,21 +26,10 @@ DEVELOPMENT_STATUS_CLASSIFIERS = (
     "Development Status :: 7 - Inactive",
 )
 ADDITIONAL_PROJECTS = {  # set of additional projects to consider as plugins
-    "logassert",
-    "nuts",
-    "flask_fixture",
+    # "logassert",
+    # "nuts",
+    # "flask_fixture",
 }
-
-
-def escape_rst(text: str) -> str:
-    text = (
-        text.replace("*", "\\*")
-        .replace("<", "\\<")
-        .replace(">", "\\>")
-        .replace("`", "\\`")
-    )
-    text = re.sub(r"_\b", "", text)
-    return text
 
 
 def project_response_with_refresh(
@@ -88,70 +73,35 @@ def iter_plugins():
         info = response.json()["info"]
         if "Development Status :: 7 - Inactive" in info["classifiers"]:
             continue
-
-        def version_sort_key(version_string):
-            try:
-                return packaging.version.parse(version_string)
-            except packaging.version.InvalidVersion:
-                return packaging.version.Version("0.0.0alpha")
-
-        last_release = ""
-        releases = response.json()["releases"]
-        for release in sorted(releases, key=version_sort_key, reverse=True):
-            if releases[release]:
-                release_date = datetime.date.fromisoformat(
-                    releases[release][-1]["upload_time_iso_8601"].split("T")[0]
-                )
-                last_release = release_date.strftime("%b %d, %Y")
-                break
+        name = info["name"]
+        home_page = info["home_page"]
         yield {
-            "name": info["name"],
-            "summary": info["summary"].strip() if info["summary"] else "",
-            "last release": last_release,
+            "name": f"[{name}]({home_page if home_page else info['project_url']})",
+            "summary": info["summary"].strip().replace("\n", ",") if info["summary"] else "",
         }
 
 
-log = "log"
-report = "report"
-run = "run"
-other = "other"
-
-group_keywords = {
-    log: [
-        "log",
-    ],
-    report: [
-        "report",
-    ],
-    run: [
-        "run",
-    ],
-}
-
-group_plugins = {
-    log: [],
-    report: [],
-    run: [],
-    other: [],
-}
-
-
-def main():
-    plugin_list = pathlib.Path(__file__).parent.parent / "README.md"
+def main(group_keywords):
+    plugin_list = pathlib.Path(__file__).parent / "README.md"
 
     plugins = [*iter_plugins()]
+    group_plugins = {}
     for plugin in plugins:
         flag = False
         for group_key, kws in group_keywords.items():
             for kw in kws:
                 if kw in plugin.get("name"):
+                    if group_plugins.get(group_key) is None:
+                        group_plugins[group_key] = []
                     group_plugins[group_key].append(plugin)
                     flag = True
                     break
             if flag:
                 break
         else:
-            group_plugins[other].append(plugin)
+            if group_plugins.get("other") is None:
+                group_plugins["other"] = []
+            group_plugins["other"].append(plugin)
 
     with plugin_list.open("w", encoding="UTF-8") as f:
 
@@ -159,15 +109,34 @@ def main():
         f.write(f"这份列表包含了 {len(plugins)} 个 Pytest 插件.\n\n")
         wcwidth
 
+        other = group_plugins.get("other")
+        group_plugins.pop("other")
         for group_key in group_plugins:
             group_plugin = group_plugins.get(group_key)
             f.write(f"## {group_key}\n\n")
-
             plugin_table = tabulate.tabulate(group_plugin, headers="keys", tablefmt="pipe")
             f.write(indent(plugin_table, ""))
-
             f.write("\n\n")
+
+        f.write(f"## other\n\n")
+        plugin_table = tabulate.tabulate(other, headers="keys", tablefmt="pipe")
+        f.write(indent(plugin_table, ""))
+
+        f.write("\n\n")
 
 
 if __name__ == "__main__":
-    main()
+    group_keywords = {
+        "log": ["log", ],
+        "docker": ["docker", ],
+        "report": ["report", "allure", ],
+        "run": ["run", ],
+        "async": ["async", ],
+        "api": ["api", ],
+        "auto": ["auto", ],
+        "bdd": ["bdd", ],
+        "check": ["check", "assert", "expect", ],
+        "config": ["config", "env", ],
+        "cov": ["cov", ],
+    }
+    main(group_keywords)

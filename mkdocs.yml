@@ -1,1 +1,92 @@
-site_name: My Docs
+site_name: Pytest Plugins
+copyright: Copyright © 2023 mikigo All Rights Reserved.
+theme:
+  name: material
+  language: zh
+  custom_dir: docs/overrides
+  palette:
+    - media: '(prefers-color-scheme: light)'
+      scheme: default
+      primary: custom
+      accent: deep orange
+      toggle:
+        icon: material/lightbulb
+        name: Switch to light mode
+    - media: '(prefers-color-scheme: dark)'
+      scheme: slate
+      primary: custom
+      accent: amber
+      toggle:
+        icon: material/lightbulb-outline
+        name: Switch to dark mode
+  features:
+    - announce.dismiss
+    - content.action.edit
+    - content.action.view
+    - content.code.annotate
+    - content.code.copy
+    - content.tooltips
+    - navigation.footer
+    - navigation.indexes
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+
+  icon:
+    repo: fontawesome/brands/github
+
+repo_name: pytest-plugins
+repo_url: https://github.com/mikigo/pytest-plugins
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - attr_list
+  - tables
+  - def_list
+
+plugins:
+  - git-revision-date-localized:
+      locale: zh
+  - git-authors:
+  - search
+  - mike
+
+extra:
+  generator: false
+  version:
+    provider: mike
+  homepage: https://mikigo.github.io/pytest-plugins
+
+extra_javascript:
+  - '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'
+
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - welcome: index.md

@@ -5,3 +5,12 @@ tabulate
 wcwidth
 requests_cache
 tqdm
+
+mike
+mkdocs
+mkdocs-material
+mkdocs-markdownextradata-plugin
+mkdocs-pymdownx-material-extras
+mkdocs-mermaid2-plugin
+mkdocs-git-revision-date-localized-plugin
+mkdocs-git-authors-plugin

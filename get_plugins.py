@@ -54,6 +54,7 @@ def pytest_plugin_projects_from_pypi(session: CachedSession) -> dict[str, int]:
         headers={"Accept": "application/vnd.pypi.simple.v1+json"},
         refresh=True,
     )
+    print(response.status_code)
     return {
         name: p["_last-serial"]
         for p in response.json()["projects"]
@@ -74,6 +75,7 @@ def iter_plugins():
         if "Development Status :: 7 - Inactive" in info["classifiers"]:
             continue
         name = info["name"]
+        print(name)
         home_page = info["home_page"]
         yield {
             "name": f"[{name}]({home_page if home_page else info['project_url']})",

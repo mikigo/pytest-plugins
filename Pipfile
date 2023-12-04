@@ -1,0 +1,30 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[[source]]
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+verify_ssl = true
+name = "pypitunatsinghuaedu"
+
+[packages]
+packaging = "*"
+platformdirs = "*"
+tabulate = "*"
+wcwidth = "*"
+requests-cache = "*"
+tqdm = "*"
+mike = "*"
+mkdocs = "*"
+mkdocs-material = "*"
+mkdocs-markdownextradata-plugin = "*"
+mkdocs-pymdownx-material-extras = "*"
+mkdocs-mermaid2-plugin = "*"
+mkdocs-git-revision-date-localized-plugin = "*"
+mkdocs-git-authors-plugin = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "2.7"

@@ -128,15 +128,17 @@ def main(group_keywords):
 if __name__ == "__main__":
     group_keywords = {
         "log": ["log", ],
-        "docker": ["docker", ],
-        "report": ["report", "allure", ],
-        "run": ["run", ],
+        "report": ["report", "allure", "html", "json", "markdown", "rich", "email"],
+        "run": ["run", "time", "retry", "random",  "reverse", "sort", ],
         "async": ["async", ],
         "api": ["api", ],
-        "auto": ["auto", ],
+        "auto": ["auto", "selenium", "playwright", "requests"],
         "bdd": ["bdd", ],
         "check": ["check", "assert", "expect", ],
-        "config": ["config", "env", ],
+        "config": ["config", "env", "ini"],
         "cov": ["cov", ],
+        "mock": ["mock", ],
+        "db": ["mongodb", "mysql", ],
+        "framework": ["fastapi", "django", "flask", "nginx", "nose", "redis", "docker", ],
     }
     main(group_keywords)

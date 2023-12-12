@@ -1,7 +1,7 @@
 
 # Pytest Plugins
 
-这份列表包含了 1352 个 Pytest 插件.
+这份列表包含了 1353 个 Pytest 插件.
 
 ## config
 
@@ -180,6 +180,7 @@
 | [pytest-sort](https://pypi.org/project/pytest-sort/)                                             | Tools for sorting test cases                                                                  |
 | [pytest-sorter](https://github.com/AndreMicheletti/pytest-sorter)                                | A simple plugin to first execute tests that historically failed more                          |
 | [pytest-time](https://pypi.org/project/pytest-time/)                                             |                                                                                               |
+| [pytest-timeassert-ethan](https://github.com/AomiEthan/pytest-timeassert-ethan)                  | execution duration                                                                            |
 | [pytest-timeit](https://github.com/ulope/pytest-timeit)                                          | A pytest plugin to time test function runs                                                    |
 | [pytest-timeout](https://github.com/pytest-dev/pytest-timeout)                                   | pytest plugin to abort hanging tests                                                          |
 | [pytest-timeouts](https://github.com/Scony/pytest-timeouts)                                      | Linux-only Pytest plugin to control durations of various test case execution phases           |

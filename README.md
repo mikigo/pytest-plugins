@@ -1,7 +1,7 @@
 
 # Pytest Plugins
 
-这份列表包含了 1353 个 Pytest 插件.
+这份列表包含了 1354 个 Pytest 插件.
 
 ## config
 
@@ -1047,6 +1047,7 @@
 | [pytest-ponyorm](https://github.com/jgirardet/pytest-ponyorm)                                                  | PonyORM in Pytest                                                                                                                                                                                        |
 | [pytest-poo](http://github.com/pelme/pytest-poo)                                                               | Visualize your crappy tests                                                                                                                                                                              |
 | [pytest-poo-fail](http://github.com/alyssa.barela/pytest-poo-fail)                                             | Visualize your failed tests with poo                                                                                                                                                                     |
+| [pytest-pook](https://pypi.org/project/pytest-pook/)                                                           | Pytest plugin for pook                                                                                                                                                                                   |
 | [pytest-pop](https://gitlab.com/vmware/pop/pytest-pop)                                                         | A pytest plugin to help with testing pop projects                                                                                                                                                        |
 | [pytest-porringer](https://github.com/Synodic-Software/Pytest-Porringer)                                       |                                                                                                                                                                                                          |
 | [pytest-portion](https://github.com/mgaitan/pytest-portion)                                                    | Select a portion of the collected tests                                                                                                                                                                  |
